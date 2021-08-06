@@ -3,7 +3,7 @@ module.exports = function babel(api) {
 
   console.debug(`
   ****************************
-  React app running on:
+  React app running with:
   BABEL_ENV = ${BABEL_ENV},
   NODE_ENV = ${process.env.NODE_ENV}
   ****************************
