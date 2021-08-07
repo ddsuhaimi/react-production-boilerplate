@@ -8,17 +8,18 @@ const webpack = require("webpack");
 
 
 module.exports = (env, argv) => {
-  const isProduuction = env.prod
+  console.log(env, argv)
+  const isProduction = env.prod
   return {
-    mode: isProduuction ? "production" : "development",
+    mode: isProduction ? "production" : "development",
     entry: [path.join(__dirname, "src", "index.js")],
     output: {
       filename: "[name].[contenthash].bundle.js",
       path: path.resolve(__dirname, "public"),
     },
-    devtool: isProduuction ? "source-map" : "inline-source-map",
+    devtool: isProduction ? "source-map" : "inline-source-map",
     devServer: {
-      contentBase: path.join(__dirname, "dist"),
+      contentBase: path.join(__dirname, "public"),
       hot: true,
     },
     module: {
@@ -35,7 +36,7 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.css$/,
-          use: [MiniCssExtractPlugin.loader,  "css-loader"],
+          use: [MiniCssExtractPlugin.loader, "css-loader"],
         },
         {
           test: /\.(png|jpe?g|gif)$/i,
@@ -55,7 +56,7 @@ module.exports = (env, argv) => {
         template: path.join(__dirname, "src", "index.html"),
       }),
       new webpack.HotModuleReplacementPlugin(),
-      new ReactRefreshWebpackPlugin(),
-    ],
+      !isProduction && new ReactRefreshWebpackPlugin(),
+    ].filter(Boolean),
   };
 };
