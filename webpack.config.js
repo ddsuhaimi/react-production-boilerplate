@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const path = require("path");
 const webpack = require("webpack");
 
@@ -13,7 +14,7 @@ module.exports = (env, argv) => {
     entry: [path.join(__dirname, "src", "index.js")],
     output: {
       filename: "[name].[contenthash].bundle.js",
-      path: path.resolve(__dirname, "dist"),
+      path: path.resolve(__dirname, "public"),
     },
     devtool: isProduuction ? "source-map" : "inline-source-map",
     devServer: {
@@ -34,7 +35,7 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.css$/,
-          use: ["style-loader", "css-loader"],
+          use: [MiniCssExtractPlugin.loader,  "css-loader"],
         },
         {
           test: /\.(png|jpe?g|gif)$/i,
@@ -47,6 +48,9 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
+      new MiniCssExtractPlugin({
+        filename: '[name].[contenthash].css'
+      }),
       new HtmlWebpackPlugin({
         template: path.join(__dirname, "src", "index.html"),
       }),
