@@ -8,7 +8,6 @@ const webpack = require("webpack");
 
 
 module.exports = (env, argv) => {
-  console.log(env, argv)
   const isProduction = env.prod
   return {
     mode: isProduction ? "production" : "development",
