@@ -9,19 +9,19 @@ const App = () => {
 	const [show, setShow] = useState(false);
 	const clickButton = () => {
 		setShow(true);
-		// import('./showTime').then(({ default: show }) => {
-		//     show()
-		// })
+		import('./showTime').then(({ default: show }) => {
+		    show()
+		})
 	};
 	return (
 		<div>
 			{show && (
 				<Suspense fallback={<div>Loading...</div>}>
 					<Home />
-					{/* <img src={img} alt="" /> */}
+					<img src={img} alt="" />
 				</Suspense>
 			)}
-            <img src="/assets/img.png" />
+            {/* <img src="/assets/img.png" /> */}
 			<button type="button" onClick={clickButton}>Test</button>
 			<h2 className="head">test2asldfjasdf</h2>
 		</div>

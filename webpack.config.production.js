@@ -8,15 +8,14 @@ const webpack = require("webpack");
 
 
 module.exports = (env, argv) => {
-  const isProduction = env.prod
   return {
-    mode: isProduction ? "production" : "development",
+    mode: "production", 
     entry: [path.join(__dirname, "src", "index.js")],
     output: {
       filename: "[name].[contenthash].bundle.js",
       path: path.resolve(__dirname, "public"),
     },
-    devtool: isProduction ? "source-map" : "inline-source-map",
+    devtool: "source-map",
     devServer: {
       contentBase: path.join(__dirname, "public"),
       hot: true,
@@ -54,8 +53,6 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: path.join(__dirname, "src", "index.html"),
       }),
-      new webpack.HotModuleReplacementPlugin(),
-      !isProduction && new ReactRefreshWebpackPlugin(),
-    ].filter(Boolean),
+    ],
   };
 };

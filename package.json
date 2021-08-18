@@ -5,9 +5,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack serve --mode=development --open --env dev",
+    "start": "cross-env NODE_ENV=development webpack serve --mode=development --open --env dev --config webpack.config.development.js",
     "clean": "node buildUtils/deleteDistFiles.js",
-    "buildProd": "cross-env NODE_ENV=production webpack --mode=production --env prod",
+    "buildProd": "cross-env NODE_ENV=production webpack --config webpack.config.production.js --mode=production --env prod ",
     "build": "run-s clean buildProd",
     "format": "prettier --write src/"
   },
