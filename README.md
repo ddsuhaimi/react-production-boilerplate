@@ -13,5 +13,6 @@ Now, while I create this boilerplate with production level app in mind, it by no
 - best one, fast refresh. No need to wait for reload, you can see the UI change instantly
 
 ## Todo
-- separating webpack config file
+- separating webpack config file (done)
+    - implement webpack merge to reduce duplicate config
 - adding webpack bundle analyzer
